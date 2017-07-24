@@ -21,9 +21,9 @@ public class Main {
 			"INSERT INTO person(name, age, heigth,weight,gender,hobby,single,education,profession) VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	public static final String UPDATE_PERSON = 
-			"update person set name='a1', age='b', heigth='c',weight='d', gender='e', hobby='f',single='g',education='h',profession='i' where id = 'a2';";
+			"update person set name=?, age=?, heigth=?,weight=?, gender=?, hobby=?,single=?,education=?,profession=? where id = ?";
 	
-	public static final String DELETE_PERSON = "delete from person where id= b;";
+	public static final String DELETE_PERSON = "delete from person where id=?";
 
 
 	public static void main(String[] args) {
@@ -79,44 +79,49 @@ public class Main {
 				}
 				break;
 				case 3:{
-				System.out.println("Enter id");
-				String a2 = sc.next();
-					System.out.println("Enter person name");
-					String a1 = sc.next();
-//					statement.setString(0, a1);
-					System.out.println("Enter age");
-					int b = sc.nextInt();
-//					statement.setInt(1, b);
-					System.out.println("Enter heigth");
-					int c = sc.nextInt();
-//					statement.setInt(3, c);
-					System.out.println("Enter weight");
-					int d = sc.nextInt();
-//					statement.setInt(4, d);
-					System.out.println("Enter gender");
-					String e = sc.next();
-//					statement.setInt(5, e);
-					System.out.println("Enter hobby");
-					String f = sc.next();
-//					statement.setString(6, f);
-					System.out.println("Enter single");
-					String g = sc.next();
-//					statement.setInt(7, g);
-					System.out.println("Enter education");
-					String h = sc.next();
-//					statement.setString(8, h);
-					System.out.println("Enter profession");
-					String i = sc.next();
 					PreparedStatement statement = 
 							connection.prepareStatement(UPDATE_PERSON);
+				System.out.println("Enter id");
+				String a2 = sc.next();
+				statement.setString(10, a2);
+					System.out.println("Enter person name");
+					String a1 = sc.next();
+					statement.setString(1, a1);
+					System.out.println("Enter age");
+					int b = sc.nextInt();
+					statement.setInt(2, b);
+					System.out.println("Enter heigth");
+					int c = sc.nextInt();
+					statement.setInt(3, c);
+					System.out.println("Enter weight");
+					int d = sc.nextInt();
+					statement.setInt(4, d);
+					System.out.println("Enter gender");
+					String e = sc.next();
+					statement.setString(5, e);
+					System.out.println("Enter hobby");
+					String f = sc.next();
+					statement.setString(6, f);
+					System.out.println("Enter single");
+					String g = sc.next();
+					statement.setString(7, g);
+					System.out.println("Enter education");
+					String h = sc.next();
+					statement.setString(8, h);
+					System.out.println("Enter profession");
+					String i = sc.next();
+					statement.setString(9, i);
 					statement.executeUpdate();
 					statement.close();
 				}
 				break;
 				case 4:{
-					Statement statement = connection.createStatement();
+					PreparedStatement statement = 
+							connection.prepareStatement(DELETE_PERSON);
+					System.out.println("Enter id");
 					int b = sc.nextInt();
-					statement.execute(DELETE_PERSON);
+					statement.setInt(1, b);
+					statement.executeUpdate();
 					statement.close();
 				}
 				break;
