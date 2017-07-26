@@ -125,6 +125,11 @@ public class Main {
 					statement.close();
 				}
 				break;
+				default:{
+					isRun=false;
+					
+				}
+				break;
 			
 			}
 			} catch (SQLException e) {
